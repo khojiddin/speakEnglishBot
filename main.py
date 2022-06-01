@@ -1,11 +1,11 @@
-import logging
+import logging, os
 from aiogram import Bot, Dispatcher, executor, types
 from EnglishToEnglish import getWordDefinition
 from googletrans import Translator
 
 translator = Translator()
 
-BOT_API_TOKEN = '5390615789:AAGX1gaYDJEgY1Znm1SOZOyHk1y714ID2GE'
+BOT_API_TOKEN = os.getenv('Bot_Api')
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
