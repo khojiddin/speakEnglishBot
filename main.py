@@ -22,15 +22,17 @@ WEBHOOK_PATH = f'/webhook/{BOT_API_TOKEN}'
 WEBHOOK_URL = f'{WEBHOOK_HOST}{WEBHOOK_PATH}'
 
 WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = os.getenv('PORT', default=8000)
+WEBAPP_PORT = int(os.getenv('PORT', default=8000))
 
 
-async def on_startup(dispatcher):
-    await bot.set_webhook(WEBHOOK_URL, drop_pending_updates=True)
+async def on_startup(dp):
+    logging.warning(
+        'Starting connection. ')
+    await bot.set_webhook(WEBHOOK_URL,drop_pending_updates=True)
 
 
-async def on_shutdown(dispatcher):
-    await bot.delete_webhook()
+async def on_shutdown(dp):
+    logging.warning('Bye! Shutting down webhook connection')
 
 
 @dp.message_handler(commands=['start'])
